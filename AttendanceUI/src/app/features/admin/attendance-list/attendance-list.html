@@ -1,0 +1,47 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Attendance Records</h1>
+    <button
+      type="button"
+      class="download-btn"
+      (click)="downloadCsv()"
+      [disabled]="loading() || !records().length"
+    >
+      Download CSV
+    </button>
+  </div>
+
+  <div class="card">
+    <p class="error-text" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+    <p *ngIf="loading()">Loading…</p>
+
+    <table *ngIf="!loading() && records().length">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Punch In</th>
+          <th>Punch Out</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rec of records()">
+          <td>{{ employeeLabel(rec.employeeId) }}</td>
+          <td>{{ rec.attendanceDate | date: 'mediumDate' }}</td>
+          <td>{{ rec.status }}</td>
+          <td>{{ rec.punchInTime ? (rec.punchInTime | date: 'short') : '—' }}</td>
+          <td>{{ rec.punchOutTime ? (rec.punchOutTime | date: 'short') : '—' }}</td>
+          <td>{{ rec.notes || '—' }}</td>
+          <td>
+            <button class="link-btn" type="button" (click)="remove(rec)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="!loading() && !records().length">No attendance records yet.</p>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.row-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  font-size: 14px;
+  padding: 0;
+}

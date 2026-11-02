@@ -1,0 +1,30 @@
+<div class="page login-page">
+  <div class="card login-card">
+    <h1> Login </h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-field">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" autocomplete="username" />
+      </div>
+      <div class="form-field">
+  <label for="password">Password</label>
+  <div class="password-field">
+    <input id="password" [type]="showPassword() ? 'text' : 'password'" formControlName="password" autocomplete="current-password" />
+    <button
+      type="button"
+      class="toggle-password"
+      (click)="togglePasswordVisibility()"
+      [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+    >
+      {{ showPassword() ? 'Hide' : 'Show' }}
+    </button>
+  </div>
+</div>
+      <p class="error-text" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+
+      <button class="btn btn-primary" type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Signing in...' : 'Sign in' }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="page form-page">
+  <div class="card">
+    <h1>{{ isEditMode() ? 'Edit Employee' : 'Add Employee' }}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-field">
+        <label for="employeeCode">Employee Code</label>
+        <input id="employeeCode" type="text" formControlName="employeeCode" />
+      </div>
+      <div class="form-field">
+        <label for="employeeName">Employee Name</label>
+        <input id="employeeName" type="text" formControlName="employeeName" />
+      </div>
+      <div class="form-field">
+        <label for="departmentId">Department ID</label>
+        <input id="departmentId" type="number" formControlName="departmentId" />
+      </div>
+
+      <p class="error-text" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="submitting()">
+          {{ submitting() ? 'Saving...' : 'Save' }}
+        </button>
+        <a class="btn btn-secondary" routerLink="/admin/employees">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

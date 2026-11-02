@@ -1,0 +1,47 @@
+<div class="page punch-page">
+  <div class="card punch-card" *ngIf="!loading(); else loadingTpl">
+    <div class="status-row">
+      <h1>Punch In / Out</h1>
+      <span class="badge" [class.badge-in]="isPunchedIn()" [class.badge-out]="!isPunchedIn()">
+        {{ isPunchedIn() ? 'Punched In' : 'Punched Out' }}
+      </span>
+    </div>
+
+    <div class="current-record" *ngIf="currentRecord() as rec">
+      <p><strong>Today's date:</strong> {{ rec.attendanceDate | date: 'mediumDate' }}</p>
+      <p *ngIf="rec.punchInTime"><strong>Punched in:</strong> {{ rec.punchInTime | date: 'short' }}</p>
+      <p *ngIf="rec.punchOutTime"><strong>Punched out:</strong> {{ rec.punchOutTime | date: 'short' }}</p>
+    </div>
+
+    <div class="form-field">
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" rows="3" [ngModel]="notes()" (ngModelChange)="notes.set($event)"></textarea>
+    </div>
+
+    <p class="error-text" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+    <p class="success-text" *ngIf="infoMessage()">{{ infoMessage() }}</p>
+
+    <div class="actions">
+      <button
+        class="btn btn-primary"
+        type="button"
+        [disabled]="working() || isPunchedIn()"
+        (click)="punchIn()">
+        {{ working() && !isPunchedIn() ? 'Punching in...' : 'Punch In' }}
+      </button>
+      <button
+        class="btn btn-danger"
+        type="button"
+        [disabled]="working() || !isPunchedIn()"
+        (click)="punchOut()">
+        {{ working() && isPunchedIn() ? 'Punching out...' : 'Punch Out' }}
+      </button>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="card punch-card">
+      <p>Loading your status…</p>
+    </div>
+  </ng-template>
+</div>

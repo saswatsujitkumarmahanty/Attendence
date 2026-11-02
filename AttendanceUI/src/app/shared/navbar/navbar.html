@@ -1,0 +1,15 @@
+<nav class="navbar" *ngIf="auth.isLoggedIn()">
+  <div class="navbar-inner">
+    <span class="brand">Attendance</span>
+    <div class="links">
+      <a routerLink="/punch" routerLinkActive="active">Punch In/Out</a>
+      <a *ngIf="auth.isManagerOrAdmin()" routerLink="/admin/employees" routerLinkActive="active">Employees</a>
+      <a *ngIf="auth.isManagerOrAdmin()" routerLink="/admin/attendance" routerLinkActive="active">Attendance</a>
+      <a *ngIf="auth.isManagerOrAdmin()" routerLink="/admin/register" routerLinkActive="active">Users</a>
+    </div>
+    <div class="user">
+      <span class="username">{{ auth.username() }} <span class="role">({{ auth.role() }})</span></span>
+      <button class="btn btn-secondary" (click)="logout()">Log out</button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../Attendance.Application/Attendance.Application.csproj" Id="f8581036-0483-4e6a-bba6-79adb36f609f" />
+  <Project Path="../Attendance.domain/Attendance.domain.csproj" Id="f667ad2d-c8b2-4b04-a4da-2ca9c25e7a24" />
+  <Project Path="../Attendance.Infrastructure/Attendance.Infrastructure.csproj" Id="d698b3de-0ec8-4d9f-9dac-9be535505089" />
+  <Project Path="Attendence.csproj" />
+</Solution>

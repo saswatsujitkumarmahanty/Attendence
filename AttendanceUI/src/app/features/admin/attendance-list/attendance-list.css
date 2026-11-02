@@ -1,0 +1,35 @@
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  font-size: 14px;
+  padding: 0;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.download-btn {
+  width: auto;
+  padding: 9px 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.download-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.download-btn:disabled {
+  background: #a9b6e8;
+  cursor: not-allowed;
+}

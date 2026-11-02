@@ -1,0 +1,35 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Employees</h1>
+    <a class="btn btn-primary" routerLink="/admin/employees/new">Add Employee</a>
+  </div>
+
+  <div class="card">
+    <p class="error-text" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+    <p *ngIf="loading()">Loading…</p>
+
+    <table *ngIf="!loading() && employees().length">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees()">
+          <td>{{ emp.employeeCode }}</td>
+          <td>{{ emp.employeeName }}</td>
+          <td>{{ emp.departmentId }}</td>
+          <td class="row-actions">
+            <a [routerLink]="['/admin/employees', emp.employeeId, 'edit']">Edit</a>
+            <button class="link-btn" type="button" (click)="remove(emp)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="!loading() && !employees().length">No employees yet.</p>
+  </div>
+</div>

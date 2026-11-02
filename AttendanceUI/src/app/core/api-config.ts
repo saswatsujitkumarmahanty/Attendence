@@ -1,0 +1,1 @@
+export const environmentApiUrl = 'https://localhost:7004/api';

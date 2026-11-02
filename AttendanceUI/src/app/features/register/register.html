@@ -1,0 +1,160 @@
+<div class="register-page">
+
+  <div class="register-card">
+
+    <div class="register-header">
+      <h1>Create User</h1>
+      <p>Add a new user to the attendance system</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- Username -->
+      <div class="form-group">
+
+        <label for="username">
+          Username
+        </label>
+
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placeholder="Enter username"
+          autocomplete="username"
+        />
+
+        <small
+          class="validation"
+          *ngIf="
+            form.controls.username.touched &&
+            form.controls.username.invalid
+          "
+        >
+          Username is required.
+        </small>
+
+      </div>
+
+      <!-- After -->
+<div class="form-group">
+  <label for="password">
+    Password
+  </label>
+
+  <div class="password-field">
+    <input
+      id="password"
+      [type]="showPassword() ? 'text' : 'password'"
+      formControlName="password"
+      placeholder="Enter password"
+      autocomplete="new-password"
+    />
+
+    <button
+      type="button"
+      class="toggle-password"
+      (click)="togglePasswordVisibility()"
+      [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+    >
+      {{ showPassword() ? 'Hide' : 'Show' }}
+    </button>
+  </div>
+
+  <small
+    class="validation"
+    *ngIf="
+      form.controls.password.touched &&
+      form.controls.password.invalid
+    "
+  >
+    Password must be at least 6 characters.
+  </small>
+</div>
+
+      <!-- Role -->
+      <div class="form-group">
+
+        <label for="role">
+          Role
+        </label>
+
+        <select
+          id="role"
+          formControlName="role"
+        >
+          <option
+            *ngFor="let role of roles"
+            [value]="role"
+          >
+            {{ role }}
+          </option>
+        </select>
+
+      </div>
+
+      <!-- Employee ID -->
+      <div class="form-group">
+
+        <label for="employeeId">
+          Employee ID
+          <span>(optional)</span>
+        </label>
+
+        <input
+          id="employeeId"
+          type="number"
+          formControlName="employeeId"
+          placeholder="Enter employee ID"
+          min="1"
+        />
+
+        <small class="hint">
+          Link this user account to an existing employee.
+        </small>
+
+      </div>
+
+      <!-- Success -->
+      <div
+        class="success-message"
+        *ngIf="successMessage()"
+      >
+        {{ successMessage() }}
+      </div>
+
+      <!-- Error -->
+      <div
+        class="error-message"
+        *ngIf="errorMessage()"
+      >
+        {{ errorMessage() }}
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        [disabled]="submitting()"
+      >
+        <span *ngIf="!submitting()">
+          Create User
+        </span>
+
+        <span *ngIf="submitting()">
+          Creating...
+        </span>
+      </button>
+
+    </form>
+
+    <div class="footer">
+
+      <a routerLink="/punch">
+        Back to Dashboard
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
